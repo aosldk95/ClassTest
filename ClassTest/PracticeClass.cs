@@ -127,5 +127,69 @@ namespace ClassTest
             Console.WriteLine("Area of Triangle : {0}", ShapeMath.GetArea(enShape.Triangle, 5, 6));
             Console.WriteLine("Area of Circle : {0}", ShapeMath.GetArea(enShape.Circle, 5));
         }
+
+        public static void practice2()
+        {
+            string str = "Kunsan University";
+            //            0123456789
+            Console.WriteLine(str.Substring(str.IndexOf("University")));
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 10; i++)
+            {
+                sb.Append(i).Append(" ");
+            }
+
+            Console.WriteLine(sb.ToString());
+
+            StringBuilder sb2 = new StringBuilder();
+            sb2.Append("The list starts here:");
+            sb2.AppendLine();
+            sb2.Append("1 cat").AppendLine();
+
+            string str2 = sb2.ToString();
+            Console.WriteLine(str2);
+
+            // example 3
+            StringBuilder sb3 = new StringBuilder(
+                "Korea University");
+            sb3.Replace("Korea", "Kunsan");
+            Console.WriteLine(sb3.ToString());
+
+            // example 4
+            string[] items = { "Cat", "Dog", "Fox", "Pig" };
+
+            StringBuilder sb4 = new StringBuilder(
+                "These animals are required:").AppendLine();
+
+            foreach(string item in items)
+            {
+                sb4.Append(item).AppendLine();
+            }
+
+            Console.WriteLine(sb4.ToString());
+
+            //example 5
+            StringBuilder sb5 = new StringBuilder("Kunsan is University");
+            sb5.Remove(6, 3);
+            Console.WriteLine(sb5.ToString());
+
+            // example 6
+            StringBuilder sb6 = new StringBuilder();
+            sb6.Append("Kunsan University.");
+
+            TrimEnd(sb6, '.');
+            Console.WriteLine(sb6.ToString());
+        }
+
+        private static void TrimEnd(StringBuilder sb, char letter)
+        {
+            if (sb.Length == 0) return;
+
+            if (sb[sb.Length - 1] == letter)
+            {
+                sb.Length -= 1;
+            }
+        }
     }
 }
