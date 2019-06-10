@@ -209,6 +209,16 @@ namespace ClassTest
             foreach (var area in areas)
                 Console.WriteLine("{0,-18} {1,14:N1} {2,14:N2} miles per side",
                                   area.Item1, area.Item2, Math.Round(Math.Sqrt(area.Item2), 2));
-        } 
+        }
+
+        public static void practice4()
+        {
+            Console.Write("Enter your ID : ");
+            string strID = Console.ReadLine();
+            Console.Write("Enter your Password : ");
+            string strPassword = Console.ReadLine();
+
+            Console.WriteLine("ID : {0}, Password : {1}", strID, strPassword);
+        }
     }
 }
