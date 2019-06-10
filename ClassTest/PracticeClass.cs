@@ -220,5 +220,60 @@ namespace ClassTest
 
             Console.WriteLine("ID : {0}, Password : {1}", strID, strPassword);
         }
+
+        public static void practice12()
+        {
+            // A : 3, 4, 5
+            // B : 3, 3, 3
+
+            //Triangle triA = new Triangle(3, 4, 5);
+
+            List<Triangle> triangles = new List<Triangle>();
+            triangles.Add(new Triangle(3, 4, 5));
+            triangles.Add(new Triangle(3, 3, 3));
+            triangles.Add(new Triangle(5, 4, 3));
+
+            int index = 1;
+            foreach(Triangle shape in triangles)
+            {
+                shape.Draw(index);
+                index++;
+            }
+
+            /*
+            index = 1;
+            for (int i = 0; i < triangles.Count; i++)
+            {
+                Triangle shape = triangles[i];
+                shape.Draw(index);
+                index++;
+            }
+            */
+
+            // Output
+            // 삼각형1: A-3, B-4, C-5
+            // 둘레길이: 12
+            // 삼각형2: A-3, B-3, C-3
+            // 둘레길이: 9
+        }
+
+        class Triangle
+        {
+            private int A, B, C;
+
+            public Triangle(int a, int b, int c)
+            {
+                A = a;
+                B = b;
+                C = c;
+            }
+
+            public void Draw(int index)
+            {
+                int sum = A + B + C;
+                Console.WriteLine("삼각형{0} : A-{1}, B-{2}, C={3}", index, A, B, C);
+                Console.WriteLine("둘레길이:{0}", sum);
+            }
+        }
     }
 }
