@@ -302,6 +302,62 @@ namespace ClassTest
                 caldouble.Divide(x, y));
         }
 
+        public static void practice14()
+        {
+            // Output
+            //시작시 속도: 1
+            //엑셀 1단계 속도: 11
+            //엑셀 2단계 속도: 31
+            //정지후 속도: 0
+
+            Car myCar = new Car("MadMax");
+            myCar.Start();
+            Console.WriteLine("시작시 속도:{0}", myCar.Speed);
+            myCar.Accelerate();
+            Console.WriteLine("엑셀1단계 속도:{0}", myCar.Speed);
+            myCar.Accelerate(20);
+            Console.WriteLine("엑셀2단계 속도:{0}", myCar.Speed);
+            myCar.Stop();
+            Console.WriteLine("정지후 속도:{0}", myCar.Speed);
+        }
+
+        class Car
+        {
+            private int speed;
+
+            public string Name { get; set; }
+            public string Maker { get; set; }
+            public string Model { get; set; }
+
+            public int Speed { get { return this.speed; } }
+
+            public Car(string name)
+            {
+                Name = name;
+            }
+
+            public void Start()
+            {
+                speed = 1;
+            }
+
+            public void Stop()
+            {
+                speed = 0;
+            }
+
+            public void Accelerate(int value = 10)
+            {
+                speed += value;
+            }
+
+            public void Break()
+            {
+                speed -= 10;
+                speed = (speed > 0) ? speed : 0;
+            }
+        }
+
         class Calculator2<T>
         {
             public T Add(T a, T b)
