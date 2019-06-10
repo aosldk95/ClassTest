@@ -279,6 +279,65 @@ namespace ClassTest
                 cal.Divide(x, y));
         }
 
+        public static void practice13_2()
+        {
+            Calculator2<int> calInt = new Calculator2<int>();
+            int a = 20, b = 10;
+            Console.WriteLine("a={0}, b={1}", a, b);
+            Console.WriteLine("사칙연산 결과: {0},{1},{2},{3}",
+                calInt.Add(a, b),
+                calInt.Substract(a, b),
+                calInt.Multiply(a, b),
+                calInt.Divide(a, b));
+
+            Console.WriteLine();
+
+            Calculator2<double> caldouble = new Calculator2<double>();
+            double x = 20.5, y = 10.5;
+            Console.WriteLine("x={0}, y={1}", x, y);
+            Console.WriteLine("사칙연산 결과: {0},{1},{2},{3}",
+                caldouble.Add(x, y),
+                caldouble.Substract(x, y),
+                caldouble.Multiply(x, y),
+                caldouble.Divide(x, y));
+        }
+
+        class Calculator2<T>
+        {
+            public T Add(T a, T b)
+            {
+                dynamic da = a;
+                dynamic db = b;
+
+                dynamic sum = da + db;
+                return sum;
+            }
+
+            public T Substract(T a, T b)
+            {
+                dynamic da = a;
+                dynamic db = b;
+
+                return da - db;
+            }
+
+            public T Multiply(T a, T b)
+            {
+                dynamic da = a;
+                dynamic db = b;
+
+                return da * db;
+            }
+
+            public T Divide(T a, T b)
+            {
+                dynamic da = a;
+                dynamic db = b;
+
+                return da / db;
+            }
+        }
+
         class Calculator
         {
             public Calculator() { }
