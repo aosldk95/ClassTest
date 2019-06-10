@@ -257,6 +257,61 @@ namespace ClassTest
             // 둘레길이: 9
         }
 
+        public static void practice13_1()
+        {
+            int a = 20, b = 10;
+            Calculator cal = new Calculator();
+            Console.WriteLine("a={0}, b={1}", a, b);
+            Console.WriteLine("사칙연산 결과: {0},{1},{2},{3}",
+                cal.Add(a, b),
+                cal.Substract(a, b),
+                cal.Multiply(a, b),
+                cal.Divide(a, b));
+
+            Console.WriteLine();
+
+            double x = 20.5, y = 10.5;
+            Console.WriteLine("x={0}, y={1}", x, y);
+            Console.WriteLine("사칙연산 결과: {0},{1},{2},{3}",
+                cal.Add(x, y),
+                cal.Substract(x, y),
+                cal.Multiply(x, y),
+                cal.Divide(x, y));
+        }
+
+        class Calculator
+        {
+            public Calculator() { }
+
+            public int Add(int a, int b){ return a + b; }
+            public int Substract(int a, int b){ return a - b; }
+            public int Multiply(int a, int b){ return a * b; }
+            public double Divide(int a, int b)
+            {
+                if (b == 0)
+                {
+                    Console.WriteLine("0으로 못나눠요!~");
+                    return 0;
+                }
+
+                return a * 1.0 / b;
+            }
+
+            public double Add(double a, double b) { return a + b; }
+            public double Substract(double a, double b) { return a - b; }
+            public double Multiply(double a, double b) { return a * b; }
+            public double Divide(double a, double b)
+            {
+                if (b == 0)
+                {
+                    Console.WriteLine("0으로 못나눠요!~");
+                    return 0;
+                }
+
+                return a / b;
+            }
+        }
+
         class Triangle
         {
             private int A, B, C;
@@ -275,5 +330,7 @@ namespace ClassTest
                 Console.WriteLine("둘레길이:{0}", sum);
             }
         }
+
+
     }
 }
