@@ -8,12 +8,12 @@ namespace ClassTest
 {
     public static class PracticeClass
     {
-        struct Rectangle
+        struct RectangleTest
         {
             public double length;
             public double width;
 
-            public Rectangle(double l, double w)
+            public RectangleTest(double l, double w)
             {
                 length = l;
                 width = w;
@@ -30,13 +30,13 @@ namespace ClassTest
             Console.WriteLine("Struct");
             Console.WriteLine("=======================");
 
-            Rectangle rect1;
+            RectangleTest rect1;
             rect1.length = 100;
             rect1.width = 30;
 
             Console.WriteLine("rectangle length:{0}, width:{1}", rect1.length, rect1.width);
 
-            Rectangle rect2 = new Rectangle(200, 50);
+            RectangleTest rect2 = new RectangleTest(200, 50);
             Console.WriteLine("rectangle length:{0}, width:{1}, area:{2}",
                 rect1.length, rect1.width, rect1.Area());
 
@@ -228,13 +228,13 @@ namespace ClassTest
 
             //Triangle triA = new Triangle(3, 4, 5);
 
-            List<Triangle> triangles = new List<Triangle>();
-            triangles.Add(new Triangle(3, 4, 5));
-            triangles.Add(new Triangle(3, 3, 3));
-            triangles.Add(new Triangle(5, 4, 3));
+            List<TriangleTest> triangles = new List<TriangleTest>();
+            triangles.Add(new TriangleTest(3, 4, 5));
+            triangles.Add(new TriangleTest(3, 3, 3));
+            triangles.Add(new TriangleTest(5, 4, 3));
 
             int index = 1;
-            foreach(Triangle shape in triangles)
+            foreach(TriangleTest shape in triangles)
             {
                 shape.Draw(index);
                 index++;
@@ -319,6 +319,110 @@ namespace ClassTest
             Console.WriteLine("엑셀2단계 속도:{0}", myCar.Speed);
             myCar.Stop();
             Console.WriteLine("정지후 속도:{0}", myCar.Speed);
+        }
+
+        public static void practice15()
+        {
+            MyPaint paint = new MyPaint();
+
+            Triangle t = new Triangle(3, 4, 5);
+            paint.DrawShape(t);
+            Console.WriteLine();
+
+            Rectangle r = new Rectangle(5, 10);
+            paint.DrawShape(r);
+            Console.WriteLine();
+
+            CustomShape cs = new CustomShape(5, 10, 2, 2);
+            paint.DrawShape(cs);
+
+            // Output
+            //Draw Triangle(3,4,5)
+            //Draw Triangle(3,4,5)
+            //Draw Rectangle(5,10)
+            //
+            //Draw Triangle(3,4,5)
+            //Draw Rectangle(5,10)
+            //Draw CustomShape(5,10,2,2)
+        }
+
+        public interface IDrawble
+        {
+            void Draw();
+        }
+
+        public class MyPaint
+        {
+            List<IDrawble> shapes = new List<IDrawble>();
+
+            public MyPaint() { }
+
+            public void DrawShape(IDrawble shape)
+            {
+                shapes.Add(shape);
+
+                foreach(IDrawble obj in shapes)
+                {
+                    obj.Draw();
+                }
+            }
+        }
+
+        public class Triangle : IDrawble
+        {
+            private int v1;
+            private int v2;
+            private int v3;
+
+            public Triangle(int v1, int v2, int v3)
+            {
+                this.v1 = v1;
+                this.v2 = v2;
+                this.v3 = v3;
+            }
+
+            public void Draw()
+            {
+                Console.WriteLine($"Draw Triangle({v1},{v2},{v3})");
+            }
+        }
+
+        public class Rectangle : IDrawble
+        {
+            private int v1;
+            private int v2;
+
+            public Rectangle(int v1, int v2)
+            {
+                this.v1 = v1;
+                this.v2 = v2;
+            }
+
+            public void Draw()
+            {
+                Console.WriteLine($"Draw Rectangle({v1},{v2})");
+            }
+        }
+
+        public class CustomShape : IDrawble
+        {
+            private int v1;
+            private int v2;
+            private int v3;
+            private int v4;
+
+            public CustomShape(int v1, int v2, int v3, int v4)
+            {
+                this.v1 = v1;
+                this.v2 = v2;
+                this.v3 = v3;
+                this.v4 = v4;
+            }
+
+            public void Draw()
+            {
+                Console.WriteLine($"Draw CustomShape({v1},{v2},{v3},{v4})");
+            }
         }
 
         class Car
@@ -427,11 +531,11 @@ namespace ClassTest
             }
         }
 
-        class Triangle
+        class TriangleTest
         {
             private int A, B, C;
 
-            public Triangle(int a, int b, int c)
+            public TriangleTest(int a, int b, int c)
             {
                 A = a;
                 B = b;
