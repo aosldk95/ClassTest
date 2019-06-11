@@ -346,6 +346,83 @@ namespace ClassTest
             //Draw CustomShape(5,10,2,2)
         }
 
+        public static void practice16()
+        {
+            FullTimeEmployee fe = new FullTimeEmployee("Tom", 190021);
+            fe.AnnualSalary = 10000;
+            fe.AdjustSalary(100);
+            Console.WriteLine("{0}'s annual salary is {1}", fe.Name, fe.AnnualSalary);
+            fe.SayName();
+
+            PartTimeEmployee pe = new PartTimeEmployee("Jane");
+            pe.hourlyRate = 100;
+            int workHour = 8;
+            int totalPayment = pe.CalculatePay(workHour);
+            Console.WriteLine("{0}'s work hour is {1}, total payment is {2}",
+                pe.Name, workHour, totalPayment);
+            pe.SayName();
+
+        }
+
+        public class Employee
+        {
+            public string Name { get; set; }
+            public string Email { get; set; }
+
+            public Employee(string name)
+            {
+                this.Name = name;
+            }
+
+            public virtual void SayName()
+            {
+                Console.WriteLine($"My name is {Name}");
+            }
+        }
+
+        public class FullTimeEmployee : Employee
+        {
+            private int EmployeeNumber { get; set; }
+
+            public FullTimeEmployee(string name, int number) : base(name)
+            {
+                EmployeeNumber = number;
+            }
+
+            public int AnnualSalary { get; set; }
+
+            public void AdjustSalary(int amount)
+            {
+                this.AnnualSalary += amount;
+            }
+
+            public override void SayName()
+            {
+                //base.SayName();
+                Console.WriteLine($"My number is {EmployeeNumber}, name is {Name}");
+            }
+        }
+
+        public class PartTimeEmployee : Employee
+        {
+            public PartTimeEmployee(string name) : base(name)
+            {
+
+            }
+
+            public int hourlyRate { get; set; }
+
+            public int CalculatePay(int time)
+            {
+                return hourlyRate * time;
+            }
+
+            public override void SayName()
+            {
+                Console.WriteLine($"I'm part-time emplyoee. My name is {Name}");
+            }
+        }
+
         public interface IDrawble
         {
             void Draw();
