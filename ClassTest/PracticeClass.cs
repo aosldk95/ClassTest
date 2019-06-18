@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -364,6 +365,60 @@ namespace ClassTest
 
         }
 
+        public static void practice17()
+        {
+            string strInputFileName = @"C:\Users\Wolf\devwork\ClassTest\ClassTest\score.txt";
+            string strOutputFileName = @"C:\Users\Wolf\devwork\ClassTest\ClassTest\scoreavg.txt";
+            if (File.Exists(strInputFileName))
+            {
+                Console.WriteLine("[L] File exists");
+            }
+            else
+            {
+                Console.WriteLine("[L] File does not exists");
+            }
+
+            string[] lines = File.ReadAllLines(strInputFileName);
+
+            using (StreamWriter sw = new StreamWriter(strOutputFileName, false))
+            {
+                sw.WriteLine("Start work");
+                foreach (string line in lines)
+                {
+                    char[] seperators = new char[] { ',' };
+                    string[] numberstrings = line.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(line);
+
+                    int sum = 0;
+                    for (int i = 1; i < numberstrings.Length; i++)
+                    {
+                        int result;
+                        if (Int32.TryParse(numberstrings[i], out result))
+                        {
+                            sum += result;
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
+                    }
+
+                    sb.Append(',');
+                    sb.Append(sum.ToString());
+
+                    int average = (int)(sum * 1.0 / (numberstrings.Length - 1));
+                    sb.Append(',');
+                    sb.Append(average.ToString());
+
+                    sw.WriteLine(sb.ToString());
+                }
+
+                sw.WriteLine("End of work");
+            }
+
+        }
+
         public class Employee
         {
             public string Name { get; set; }
@@ -442,6 +497,14 @@ namespace ClassTest
                 {
                     obj.Draw();
                 }
+            }
+        }
+
+        public class Circle : IDrawble
+        {
+            public void Draw()
+            {
+                //
             }
         }
 
