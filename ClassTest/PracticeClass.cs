@@ -376,6 +376,7 @@ namespace ClassTest
             else
             {
                 Console.WriteLine("[L] File does not exists");
+                return;
             }
 
             string[] lines = File.ReadAllLines(strInputFileName);
